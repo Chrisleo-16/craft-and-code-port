@@ -70,16 +70,18 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              Building Solutions That Matter
+              Building Software That Matters
             </motion.h1>
             
             <motion.p
-              className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+              className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              Crafting innovative software solutions to solve real-world problems and make a meaningful impact
+              Full-stack engineer transforming complex challenges into scalable solutions. 
+              Specialized in building high-performance applications that serve millions while 
+              maintaining exceptional user experiences.
             </motion.p>
 
             <motion.div

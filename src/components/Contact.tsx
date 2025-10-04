@@ -29,8 +29,8 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "hello@example.com" },
-    { icon: Phone, label: "Phone", value: "+1 (555) 123-4567" },
+    { icon: Mail, label: "Email", value: "engineer@portfolio.dev" },
+    { icon: Phone, label: "Phone", value: "+1 (555) 789-0123" },
     { icon: MapPin, label: "Location", value: "San Francisco, CA" },
   ];
 
@@ -43,10 +43,11 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Let's Build Something Exceptional</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Have a project in mind? Let's work together to build something amazing.
+            Open to full-time opportunities, consulting projects, and technical advisory roles. 
+            Whether you're scaling a startup or solving complex problems at enterprise scale, let's connect.
           </p>
         </motion.div>
 
@@ -56,9 +57,10 @@ const Contact = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-bold mb-6">Let's Talk</h3>
-            <p className="text-muted-foreground mb-8">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+            <h3 className="text-2xl font-bold mb-6">Ready to Collaborate</h3>
+            <p className="text-muted-foreground mb-8 leading-relaxed">
+              Whether you need a technical co-founder, a senior engineer to scale your product, 
+              or an advisor to guide your technical strategy—I'm here to help turn ambitious ideas into reality.
             </p>
 
             <div className="space-y-6">

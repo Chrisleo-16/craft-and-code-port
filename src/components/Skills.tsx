@@ -8,30 +8,33 @@ const Skills = () => {
 
   const skillCategories = [
     {
-      category: "Frontend",
+      category: "Frontend Development",
       skills: [
         { name: "React / Next.js", level: 95 },
-        { name: "TypeScript", level: 90 },
-        { name: "Tailwind CSS", level: 95 },
-        { name: "Framer Motion", level: 85 },
+        { name: "TypeScript / JavaScript", level: 94 },
+        { name: "Vue.js / Nuxt", level: 85 },
+        { name: "Tailwind / CSS-in-JS", level: 92 },
+        { name: "State Management (Redux, Zustand)", level: 90 },
       ],
     },
     {
-      category: "Backend",
+      category: "Backend & Database",
       skills: [
-        { name: "Node.js / Express", level: 88 },
-        { name: "Python / Django", level: 82 },
-        { name: "PostgreSQL", level: 85 },
-        { name: "REST APIs", level: 92 },
+        { name: "Node.js / Express / Fastify", level: 93 },
+        { name: "Python / Django / FastAPI", level: 88 },
+        { name: "PostgreSQL / MongoDB", level: 90 },
+        { name: "GraphQL / REST APIs", level: 92 },
+        { name: "Redis / Caching Strategies", level: 85 },
       ],
     },
     {
-      category: "Tools & Others",
+      category: "DevOps & Cloud",
       skills: [
-        { name: "Git / GitHub", level: 93 },
-        { name: "Docker", level: 80 },
-        { name: "AWS / Cloud", level: 78 },
-        { name: "UI/UX Design", level: 87 },
+        { name: "AWS / GCP / Azure", level: 87 },
+        { name: "Docker / Kubernetes", level: 84 },
+        { name: "CI/CD Pipelines", level: 90 },
+        { name: "Terraform / Infrastructure as Code", level: 82 },
+        { name: "Monitoring (Datadog, Grafana)", level: 85 },
       ],
     },
   ];

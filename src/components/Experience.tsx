@@ -10,35 +10,41 @@ const Experience = () => {
   const experiences = [
     {
       title: "Senior Software Engineer",
-      company: "Tech Innovations Inc.",
+      company: "DataVision AI (Series B, $45M funded)",
       period: "2022 - Present",
-      description: "Leading development of enterprise-scale applications, mentoring junior developers, and implementing best practices across the team.",
+      description: "Technical lead for enterprise analytics platform serving Fortune 500 clients. Architecting distributed systems processing billions of events monthly. Leading team of 8 engineers across frontend, backend, and infrastructure.",
       achievements: [
-        "Architected microservices platform serving 1M+ users",
-        "Reduced deployment time by 70% through CI/CD optimization",
-        "Mentored 5+ junior developers to senior positions",
+        "Architected microservices migration reducing infrastructure costs by $180K/year (40% reduction)",
+        "Built real-time data processing pipeline handling 10M+ events daily with 99.95% reliability",
+        "Reduced P95 API latency from 2.1s to 320ms through database optimization and caching strategy",
+        "Mentored 3 junior engineers who were promoted to mid-level within 12 months",
+        "Led security audit achieving SOC 2 Type II compliance, unlocking $8M+ in enterprise deals",
       ],
     },
     {
-      title: "Full Stack Developer",
-      company: "Digital Solutions Co.",
+      title: "Full Stack Engineer",
+      company: "CollabSpace (Acquired by Microsoft 2023)",
       period: "2020 - 2022",
-      description: "Developed and maintained multiple client-facing applications with focus on performance and user experience.",
+      description: "Core team member (#3 engineering hire) building real-time collaboration SaaS from 0 to 50K+ DAU. Owned entire frontend architecture and contributed significantly to WebSocket infrastructure. Worked directly with founders on product strategy and technical roadmap.",
       achievements: [
-        "Built 10+ production applications from scratch",
-        "Improved application performance by 50%",
-        "Implemented automated testing reducing bugs by 40%",
+        "Built operational transformation engine powering real-time collaborative editing for 100+ concurrent users",
+        "Implemented WebRTC peer-to-peer connections reducing CDN costs by $4K/month (60%)",
+        "Created component library and design system used across 12+ product features",
+        "Established CI/CD pipeline cutting deployment time from 45min to 8min (82% improvement)",
+        "Scaled application from 200 to 50,000 daily active users with zero downtime",
       ],
     },
     {
-      title: "Software Developer",
-      company: "StartUp Labs",
+      title: "Software Engineer",
+      company: "MedTech Solutions (Healthcare SaaS)",
       period: "2018 - 2020",
-      description: "Collaborated with cross-functional teams to deliver innovative solutions for early-stage startups.",
+      description: "Full-stack developer building HIPAA-compliant healthcare management platform. Worked on patient scheduling, EHR integration, and billing systems. Collaborated with compliance and product teams to meet strict healthcare regulations.",
       achievements: [
-        "Contributed to 3 successful product launches",
-        "Developed responsive designs for 20+ landing pages",
-        "Integrated third-party APIs for enhanced functionality",
+        "Developed automated appointment scheduling system reducing patient no-shows by 52%",
+        "Integrated with 8 major EHR systems (Epic, Cerner, Allscripts) via FHIR/HL7 protocols",
+        "Built admin dashboard managing 300+ healthcare providers and 50K+ patient records",
+        "Implemented comprehensive audit logging and encryption meeting HIPAA and SOC 2 requirements",
+        "Created API rate-limiting and caching layer improving system throughput by 3x",
       ],
     },
   ];
@@ -52,9 +58,9 @@ const Experience = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Experience</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Professional Journey</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4" />
-          <p className="text-muted-foreground text-lg">My professional journey</p>
+          <p className="text-muted-foreground text-lg">6+ years building products that scale from zero to millions</p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
