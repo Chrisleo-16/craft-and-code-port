@@ -7,6 +7,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ChrisBot from "@/components/ChrisBot";
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
         <Contact />
         <Footer />
       </div>
+      <ChrisBot />
     </>
   );
 };
