@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Loader2, Mic, MicOff, Volume2 } from "lucide-react";
+import { X, Send, Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -18,10 +18,7 @@ const ChrisBot = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hasShownGreeting, setHasShownGreeting] = useState(false);
-  const [isListening, setIsListening] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const recognitionRef = useRef<any>(null);
   const { toast } = useToast();
 
   const scrollToBottom = () => {
@@ -32,31 +29,6 @@ const ChrisBot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Initialize speech recognition
-  useEffect(() => {
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
-      recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = false;
-      recognitionRef.current.interimResults = false;
-      
-      recognitionRef.current.onresult = (event: any) => {
-        const transcript = event.results[0][0].transcript;
-        setInput(transcript);
-        setIsListening(false);
-      };
-      
-      recognitionRef.current.onerror = () => {
-        setIsListening(false);
-        toast({
-          title: "Eeh, maze! 🎤",
-          description: "Couldn't catch that. Try again?",
-          variant: "destructive",
-        });
-      };
-    }
-  }, [toast]);
-
   // Show greeting on mount
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -65,45 +37,15 @@ const ChrisBot = () => {
         setMessages([
           {
             role: "assistant",
-            content: "Niaje! 👋 I'm ChrisBot… Eeh maze, should I take you through this app ama you wanna just text me? 😏 Either way, fiti sana! 🔥",
+            content: "Eish! Chris ameni-program vibaya bana — sasa niko hapa kupiga story.\nUnataka tuende na lugha gani? Sheng? Swahili? Ama English ya ku-make investor smile? 😏",
           },
         ]);
         setHasShownGreeting(true);
-        
-        // Speak the greeting
-        speakMessage("Niaje! I'm ChrisBot. Should I take you through this app or you wanna just text me? Either way, fiti sana!");
       }
     }, 2000);
 
     return () => clearTimeout(timer);
   }, [hasShownGreeting]);
-
-  const speakMessage = (text: string) => {
-    if ('speechSynthesis' in window) {
-      // Cancel any ongoing speech
-      window.speechSynthesis.cancel();
-      
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 1.1;
-      utterance.pitch = 1.0;
-      utterance.volume = 1.0;
-      
-      utterance.onstart = () => setIsSpeaking(true);
-      utterance.onend = () => setIsSpeaking(false);
-      
-      window.speechSynthesis.speak(utterance);
-    }
-  };
-
-  const toggleListening = () => {
-    if (isListening) {
-      recognitionRef.current?.stop();
-      setIsListening(false);
-    } else {
-      recognitionRef.current?.start();
-      setIsListening(true);
-    }
-  };
 
   const sendMessage = async (messageText?: string) => {
     const textToSend = messageText || input.trim();
@@ -123,7 +65,6 @@ const ChrisBot = () => {
 
       if (data?.reply) {
         setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
-        speakMessage(data.reply);
       }
     } catch (error) {
       console.error("ChrisBot error:", error);
@@ -180,7 +121,7 @@ const ChrisBot = () => {
                 ease: "easeInOut"
               }
             }}
-            className="fixed bottom-0 right-6 z-50 cursor-pointer"
+            className="fixed bottom-0 right-12 z-50 cursor-pointer"
             onClick={() => setIsOpen(true)}
           >
             <motion.img
@@ -222,7 +163,7 @@ const ChrisBot = () => {
             }}
             exit={{ scale: 0, opacity: 0, x: 100, y: 100 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-3rem)]"
+            className="fixed bottom-6 right-12 z-50 w-96 max-w-[calc(100vw-3rem)]"
           >
             <div className="bg-background border-2 border-primary rounded-2xl shadow-2xl overflow-hidden">
               {/* Header with Character */}
@@ -232,29 +173,16 @@ const ChrisBot = () => {
                     src={chrisbotCharacter}
                     alt="ChrisBot"
                     className="h-12 w-12 rounded-full object-cover border-2 border-white"
-                    animate={{
-                      rotate: isSpeaking ? [0, -5, 5, -5, 0] : 0,
-                    }}
-                    transition={{
-                      repeat: isSpeaking ? Infinity : 0,
-                      duration: 0.5,
-                    }}
                   />
                   <div>
-                    <h3 className="font-bold text-white flex items-center gap-2">
-                      ChrisBot 
-                      {isSpeaking && <Volume2 className="h-4 w-4 animate-pulse" />}
-                    </h3>
+                    <h3 className="font-bold text-white">ChrisBot</h3>
                     <p className="text-xs text-white/80">Your sarcastic mate 😏</p>
                   </div>
                 </div>
                 <Button
                   variant="ghost"
                   size="icon"
-                  onClick={() => {
-                    setIsOpen(false);
-                    window.speechSynthesis.cancel();
-                  }}
+                  onClick={() => setIsOpen(false)}
                   className="text-white hover:bg-white/20"
                 >
                   <X className="h-5 w-5" />
@@ -350,21 +278,11 @@ const ChrisBot = () => {
                   }}
                   className="flex gap-2"
                 >
-                  <Button
-                    type="button"
-                    size="icon"
-                    variant={isListening ? "default" : "outline"}
-                    onClick={toggleListening}
-                    disabled={isLoading}
-                    className={isListening ? "animate-pulse" : ""}
-                  >
-                    {isListening ? <Mic className="h-4 w-4" /> : <MicOff className="h-4 w-4" />}
-                  </Button>
                   <Input
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder={isListening ? "Listening... 🎤" : "Type or speak..."}
-                    disabled={isLoading || isListening}
+                    placeholder="Type your message..."
+                    disabled={isLoading}
                     className="flex-1"
                   />
                   <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
