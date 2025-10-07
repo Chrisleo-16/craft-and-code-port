@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,9 +29,10 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "engineer@portfolio.dev" },
-    { icon: Phone, label: "Phone", value: "+1 (555) 789-0123" },
-    { icon: MapPin, label: "Location", value: "San Francisco, CA" },
+    { icon: Mail, label: "Email", value: "chrisleoevans@gmail.com", link: "mailto:chrisleoevans@gmail.com" },
+    { icon: Linkedin, label: "LinkedIn", value: "Leo Chrisben Evans", link: "https://www.linkedin.com/in/leo-chrisben-evans-a49570322/" },
+    { icon: Phone, label: "Phone", value: "+254 712 345 678" },
+    { icon: MapPin, label: "Location", value: "Nairobi, Kenya" },
   ];
 
   return (
@@ -77,7 +78,18 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">{info.label}</p>
-                    <p className="font-semibold">{info.value}</p>
+                    {info.link ? (
+                      <a 
+                        href={info.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="font-semibold hover:text-accent transition-colors"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <p className="font-semibold">{info.value}</p>
+                    )}
                   </div>
                 </motion.div>
               ))}

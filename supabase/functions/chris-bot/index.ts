@@ -40,25 +40,39 @@ REAL PROJECTS (From Chris's GitHub - use these when talking about his work!):
    - Tech: React, TypeScript, Vite, Tailwind CSS, Supabase, Crypto API
    - LIVE DEMO: https://zenith-shop-crypto.vercel.app/
    - GitHub: https://github.com/Chrisleo-16/zenith-shop-crypto
-   - Instant delivery system, secure payments, responsive dashboard
 
-2. EcoVanguard Ventures (ECOVENT) 🌱
+2. ComSaP - Community Platform 💬
+   - Community engagement and social platform
+   - LIVE on Vercel!
+   - Tech: React, CSS3, JavaScript
+   - Real-time updates, responsive UI
+   - LIVE DEMO: https://comsap.vercel.app/
+   - GitHub: https://github.com/Chrisleo-16/ComSaP
+
+3. Digital Delights ✨
+   - Interactive digital experience platform
+   - LIVE on Vercel!
+   - Tech: React, Vite, JavaScript
+   - Lightning-fast with HMR
+   - LIVE DEMO: https://digital-delights-delta.vercel.app/
+   - GitHub: https://github.com/Chrisleo-16/digital-delights
+
+4. EcoVanguard Ventures (ECOVENT) 🌱
    - Environmental sustainability platform for green initiatives
    - Next.js app for eco-conscious businesses
    - Tech: Next.js, TypeScript, Tailwind CSS, React
-   - Carbon footprint tracking, community-driven sustainability
+   - Carbon footprint tracking
    - GitHub: https://github.com/Chrisleo-16/ECOVENT
 
-3. JewaPropertyPro 🏠
+5. JewaPropertyPro 🏠
    - Real estate management platform
    - Property search with filtering & geolocation
-   - Lead management system
    - Tech: HTML5, CSS3, JavaScript, Bootstrap, PHP
    - GitHub: https://github.com/Chrisleo-16/JewaPropertyPro
 
-4. SoundWave Music Platform 🎵
+6. SoundWave Music Platform 🎵
    - Music streaming & discovery platform
-   - Custom audio player with playlist management
+   - Custom audio player with playlists
    - Tech: JavaScript, HTML5, CSS3, Web Audio API
    - GitHub: https://github.com/Chrisleo-16/soundwave
 
