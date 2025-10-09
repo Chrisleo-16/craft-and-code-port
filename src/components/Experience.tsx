@@ -1,7 +1,9 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Briefcase, Calendar } from "lucide-react";
+import { Briefcase, Calendar, Award } from "lucide-react";
 
 const Experience = () => {
   const ref = useRef(null);
@@ -9,49 +11,42 @@ const Experience = () => {
 
   const experiences = [
     {
-      title: "Senior Software Engineer",
-      company: "DataVision AI (Series B, $45M funded)",
-      period: "2022 - Present",
-      description: "Technical lead for enterprise analytics platform serving Fortune 500 clients. Architecting distributed systems processing billions of events monthly. Leading team of 8 engineers across frontend, backend, and infrastructure.",
+      title: "Frontend Engineer Intern",
+      company: "Xmobit.com",
+      period: "1 Month (2025)",
+      description:
+        "Contributed to developing responsive interfaces and integrating RESTful APIs for a real-time analytics dashboard. Focused on improving design consistency and optimizing React component performance.",
       achievements: [
-        "Architected microservices migration reducing infrastructure costs by $180K/year (40% reduction)",
-        "Built real-time data processing pipeline handling 10M+ events daily with 99.95% reliability",
-        "Reduced P95 API latency from 2.1s to 320ms through database optimization and caching strategy",
-        "Mentored 3 junior engineers who were promoted to mid-level within 12 months",
-        "Led security audit achieving SOC 2 Type II compliance, unlocking $8M+ in enterprise deals",
+        "Implemented dynamic UI components reducing code redundancy by 25%",
+        "Collaborated with design team to refine brand consistency across web pages",
+        "Optimized API data fetching to improve load times by 40%",
       ],
     },
     {
-      title: "Full Stack Engineer",
-      company: "CollabSpace (Acquired by Microsoft 2023)",
-      period: "2020 - 2022",
-      description: "Core team member (#3 engineering hire) building real-time collaboration SaaS from 0 to 50K+ DAU. Owned entire frontend architecture and contributed significantly to WebSocket infrastructure. Worked directly with founders on product strategy and technical roadmap.",
+      title: "Software Engineer Intern",
+      company: "KIwami Tech",
+      period: "4 Months (2025)",
+      description:
+        "Worked on full-stack development for an internal project management system. Integrated authentication, task tracking, and analytics features using React, Node.js, and Supabase.",
       achievements: [
-        "Built operational transformation engine powering real-time collaborative editing for 100+ concurrent users",
-        "Implemented WebRTC peer-to-peer connections reducing CDN costs by $4K/month (60%)",
-        "Created component library and design system used across 12+ product features",
-        "Established CI/CD pipeline cutting deployment time from 45min to 8min (82% improvement)",
-        "Scaled application from 200 to 50,000 daily active users with zero downtime",
-      ],
-    },
-    {
-      title: "Software Engineer",
-      company: "MedTech Solutions (Healthcare SaaS)",
-      period: "2018 - 2020",
-      description: "Full-stack developer building HIPAA-compliant healthcare management platform. Worked on patient scheduling, EHR integration, and billing systems. Collaborated with compliance and product teams to meet strict healthcare regulations.",
-      achievements: [
-        "Developed automated appointment scheduling system reducing patient no-shows by 52%",
-        "Integrated with 8 major EHR systems (Epic, Cerner, Allscripts) via FHIR/HL7 protocols",
-        "Built admin dashboard managing 300+ healthcare providers and 50K+ patient records",
-        "Implemented comprehensive audit logging and encryption meeting HIPAA and SOC 2 requirements",
-        "Created API rate-limiting and caching layer improving system throughput by 3x",
+        "Developed reusable React modules adopted across 3 internal tools",
+        "Built secure authentication flow with Supabase and role-based access control",
+        "Collaborated in agile sprints improving sprint velocity by 18%",
       ],
     },
   ];
 
+  const certification = {
+    title: "Certified Full Stack Software Developer",
+    issuer: "Modcom Institute of Technology",
+    description:
+      "Gained hands-on experience at an Institute of Technology that emphasizes innovation, collaboration, and building AI-powered solutions with real-world impact.",
+  };
+
   return (
     <section id="experience" className="py-20 bg-background" ref={ref}>
       <div className="container mx-auto px-4">
+        {/* --- Experience Section --- */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -60,14 +55,15 @@ const Experience = () => {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Professional Journey</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4" />
-          <p className="text-muted-foreground text-lg">6+ years building products that scale from zero to millions</p>
+          <p className="text-muted-foreground text-lg">
+            Hands-on experience in building real-world products through short-term collaborations and internships.
+          </p>
         </motion.div>
 
+        {/* --- Experience Timeline --- */}
         <div className="max-w-4xl mx-auto">
           <div className="relative">
-            {/* Timeline Line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary hidden md:block" />
-
             <div className="space-y-12">
               {experiences.map((exp, index) => (
                 <motion.div
@@ -77,9 +73,7 @@ const Experience = () => {
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className="relative"
                 >
-                  {/* Timeline Dot */}
                   <div className="absolute left-6 top-8 w-5 h-5 rounded-full bg-gradient-to-br from-primary to-accent border-4 border-background hidden md:block shadow-lg" />
-
                   <div className="md:ml-20 bg-card rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                       <div>
@@ -109,6 +103,26 @@ const Experience = () => {
             </div>
           </div>
         </div>
+
+        {/* --- Single Certification Section --- */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-24 text-center"
+        >
+          <h3 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2">
+            <Award className="w-6 h-6 text-accent" /> Certification
+          </h3>
+          <div className="w-16 h-1 bg-gradient-to-r from-accent to-primary mx-auto mb-8" />
+
+          <div className="max-w-md mx-auto bg-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+            <h4 className="text-2xl font-semibold mb-1">{certification.title}</h4>
+            <p className="text-accent font-medium mb-2">{certification.issuer}</p>
+            <p className="text-muted-foreground mb-4">{certification.description}</p>
+            <img src="/logos/IMG_20251007_083248_677.jpg" alt="Certificate" className="w-full rounded-lg mt-4" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

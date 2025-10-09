@@ -46,21 +46,13 @@ const About = () => {
             className="bg-card rounded-2xl p-8 md:p-12 shadow-xl mb-12"
           >
             <p className="text-lg text-foreground/80 leading-relaxed mb-6">
-              I'm a full-stack software engineer with over 6 years of experience building products that scale. 
-              From early-stage startups to enterprise solutions serving millions, I've architected systems that balance 
-              performance, maintainability, and user delight. My approach combines technical excellence with product thinking—
-              I don't just write code, I solve problems that matter.
+              I’m a full-stack software engineer passionate about building scalable, reliable, and human-centered digital experiences. From fast-moving startups to enterprise-grade systems serving millions, I’ve architected products that balance performance, maintainability, and usability. My focus goes beyond code — I translate complex problems into intuitive, high-impact solutions that drive real business value.
             </p>
             <p className="text-lg text-foreground/80 leading-relaxed mb-6">
-              My expertise spans modern web technologies, cloud infrastructure, and AI integration. I've led teams through 
-              complex technical migrations, reduced system costs by 40% through optimization, and mentored junior developers 
-              into confident contributors. Whether it's building real-time collaboration tools or optimizing database queries 
-              at scale, I thrive in environments where impact is measured and innovation is celebrated.
+              My expertise spans modern web technologies, cloud infrastructure, and intelligent system design. I’ve implemented secure JWT-based authentication flows, integrated MPESA for seamless digital payments, and built end-to-end chatbot systems that enhance customer interaction and automation. Whether leading technical migrations, optimizing backend systems to cut operational costs, or crafting responsive user interfaces that delight, I bring both precision and product thinking to every layer of the stack.
             </p>
             <p className="text-lg text-foreground/80 leading-relaxed">
-              Beyond code, I'm passionate about open source contribution, technical writing, and staying ahead of industry 
-              trends. I believe the best software is built at the intersection of empathy, craftsmanship, and continuous learning. 
-              My mission is to build technology that doesn't just work—it makes a meaningful difference in people's lives.
+              I thrive in collaborative environments where innovation meets accountability — where every line of code contributes to a greater mission. Beyond development, I’m deeply engaged in open source, technical writing, and mentoring, empowering others to grow while continuously expanding my own horizon. <br/> I believe the best technology isn’t just functional — it’s meaningful. My mission is to build intelligent, scalable systems that improve lives, enable connections, and shape the future of how people experience software.
             </p>
           </motion.div>
 

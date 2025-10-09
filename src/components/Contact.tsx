@@ -29,9 +29,9 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "chrisleoevans@gmail.com", link: "mailto:chrisleoevans@gmail.com" },
+    { icon: Mail, label: "Email", value: "chrisbenevansleo@gmail.com", link: "mailto:chrisbenevansleo@gmail.com" },
     { icon: Linkedin, label: "LinkedIn", value: "Leo Chrisben Evans", link: "https://www.linkedin.com/in/leo-chrisben-evans-a49570322/" },
-    { icon: Phone, label: "Phone", value: "+254 712 345 678" },
+    { icon: Phone, label: "Phone", value: "+254 748 333 763" },
     { icon: MapPin, label: "Location", value: "Nairobi, Kenya" },
   ];
 

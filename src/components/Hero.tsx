@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -84,6 +84,7 @@ const Hero = () => {
               maintaining exceptional user experiences.
             </motion.p>
 
+            {/* Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
               initial={{ opacity: 0, y: 20 }}
@@ -98,16 +99,25 @@ const Hero = () => {
                 Get In Touch
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-2 hover:bg-accent/10 transition-all duration-300"
-                onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
+
+              {/* Download Portfolio Button */}
+              <a
+                href="/logos/LEO CHRISBEN.pdf" // <-- Change this to your actual file path
+                download="LEOCHRISBENEVANS.pdf"
+                className="inline-flex"
               >
-                View Projects
-              </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-2 hover:bg-accent/10 transition-all duration-300"
+                >
+                  <Download className="mr-2 w-5 h-5" />
+                  Download Portfolio
+                </Button>
+              </a>
             </motion.div>
 
+            {/* Social Icons */}
             <motion.div
               className="flex gap-6 justify-center"
               initial={{ opacity: 0 }}
@@ -115,13 +125,15 @@ const Hero = () => {
               transition={{ delay: 0.9, duration: 0.8 }}
             >
               {[
-                { icon: Github, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Mail, href: "#contact" },
+                { icon: Github, href: "https://github.com/Chrisleo-16" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/leo-chrisben-evans-a49570322/" },
+                { icon: Mail, href: "mailto:chrisbenevansleo@gmail.com?subject=Collaboration%20Request&body=Hey%20Chris%2C%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20collaborate!", target: '_blank' },
               ].map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
+                  target={social.target || "_blank"}
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, y: -2 }}
                   className="text-muted-foreground hover:text-accent transition-colors"
                 >
