@@ -44,17 +44,18 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-         
-<motion.div
-  className="flex justify-center items-center"
-  whileHover={{ scale: 1.05 }}
-orkspaces>
-  <img
-    src='/logos/chrisbenleo-high-resolution-logo-transparent.png'
-    alt="Portfolio Logo"
-    className="w-12 h-12 md:w-14 md:h-14 object-contain rounded-full shadow-lg"
-  />
-</motion.div>
+          {/* Logo */}
+          <motion.div
+            className="flex justify-center items-center cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            onClick={() => scrollToSection("#top")}
+          >
+            <img
+              src="/logos/chrisbenleo-high-resolution-logo-transparent.png"
+              alt="Portfolio Logo"
+              className="w-12 h-12 md:w-14 md:h-14 object-contain rounded-full shadow-lg"
+            />
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
