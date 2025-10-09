@@ -48,12 +48,12 @@ const Navbar = () => {
           <motion.div
             className="flex justify-center items-center cursor-pointer"
             whileHover={{ scale: 1.05 }}
-            onClick={() => scrollToSection("#top")}
+            onClick={() => scrollToSection("/")}
           >
             <img
               src="/logos/chrisbenleo-high-resolution-logo-transparent.png"
               alt="Portfolio Logo"
-              className="w-12 h-12 md:w-14 md:h-14 object-contain rounded-full shadow-lg"
+              className="w-15 h-12 md:w-15 md:h-14 object-contain shadow-lg"
             />
           </motion.div>
 
