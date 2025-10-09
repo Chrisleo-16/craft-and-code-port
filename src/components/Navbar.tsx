@@ -53,7 +53,7 @@ const Navbar = () => {
             <img
               src="/logos/chrisbenleo-high-resolution-logo-transparent.png"
               alt="Portfolio Logo"
-              className="w-15 h-12 md:w-15 md:h-14 object-contain shadow-lg"
+              className="w-20 h-12 md:w-60 md:h-14 object-contain"
             />
           </motion.div>
 

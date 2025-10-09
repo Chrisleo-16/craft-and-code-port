@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <img src="/logos/chrisbenleo-high-resolution-logo-transparent.png" alt="" className="w-20 h-12 md:w-20 md:h-14 object-contain shadow-lg" />
+            <img src="/logos/chrisbenleo-high-resolution-logo-transparent.png" alt="" className="w-20 h-12 md:w-20 md:h-14 object-contain " />
             <p className="text-muted-foreground">
               Building the future, one line of code at a time.
             </p>
