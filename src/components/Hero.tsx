@@ -102,7 +102,7 @@ const Hero = () => {
 
               {/* Download Portfolio Button */}
               <a
-                href="/logos/LEO CHRISBEN.pdf" // <-- Change this to your actual file path
+                href="/logos/LEO CHRISBEN (1).pdf" // <-- Change this to your actual file path
                 download="LEOCHRISBENEVANS.pdf"
                 className="inline-flex"
               >
@@ -112,7 +112,7 @@ const Hero = () => {
                   className="border-2 hover:bg-accent/10 transition-all duration-300"
                 >
                   <Download className="mr-2 w-5 h-5" />
-                  Download Portfolio
+                  Download Resume
                 </Button>
               </a>
             </motion.div>
