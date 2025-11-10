@@ -48,6 +48,7 @@ const Experience = () => {
       <div className="container mx-auto px-4">
         {/* --- Experience Section --- */}
         <motion.div
+          data-aos="fade-up"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -68,6 +69,8 @@ const Experience = () => {
               {experiences.map((exp, index) => (
                 <motion.div
                   key={exp.title}
+                  data-aos="fade-right"
+                  data-aos-delay={index * 200}
                   initial={{ opacity: 0, x: -50 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -106,6 +109,8 @@ const Experience = () => {
 
         {/* --- Single Certification Section --- */}
         <motion.div
+          data-aos="zoom-in"
+          data-aos-delay="400"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}

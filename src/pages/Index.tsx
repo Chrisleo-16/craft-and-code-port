@@ -8,6 +8,7 @@ import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ChrisBot from "@/components/ChrisBot";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
         <Footer />
       </div>
       <ChrisBot />
+      <ScrollToTop />
     </>
   );
 };

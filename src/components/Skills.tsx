@@ -56,6 +56,7 @@ const Skills = () => {
       <div className="container mx-auto px-4 text-center">
         {/* Header Animation */}
         <motion.div
+          data-aos="fade-up"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}

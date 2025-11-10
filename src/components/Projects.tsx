@@ -17,7 +17,7 @@ const Projects = () => {
       description:
         "Modern VPN commerce platform revolutionizing digital services marketplace. Built secure crypto payment integration supporting Bitcoin, Ethereum, and major altcoins for maximum privacy. Engineered instant delivery system with real-time activation for VPN services and digital accounts. Implemented responsive dashboard for seamless product management across devices. Deployed on Vercel with 99.9% uptime.",
       tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Crypto API"],
-      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800",
+      image: "/screenshots/zenith-crypto-shop.png",
       impact: "Live Production · Crypto-powered marketplace",
       github: "https://github.com/Chrisleo-16/zenith-shop-crypto",
       demo: "https://zenith-shop-crypto.vercel.app/",
@@ -27,7 +27,7 @@ const Projects = () => {
       description:
         "Innovative community engagement and social platform built with React. Architected scalable user interaction system with real-time updates and dynamic content management. Engineered responsive UI optimized for community discussions and collaborative projects. Implemented modern CSS animations and transitions for premium user experience. Deployed on Vercel delivering seamless performance across devices.",
       tags: ["React", "CSS3", "JavaScript", "Vercel", "Responsive Design"],
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800",
+      image: "/screenshots/comsap.png",
       impact: "Live Production · Community Engagement",
       github: "https://github.com/Chrisleo-16/ComSaP",
       demo: "https://comsap.vercel.app/",
@@ -37,7 +37,7 @@ const Projects = () => {
       description:
         "Interactive digital experience platform powered by React and Vite. Built lightning-fast application with modern JavaScript architecture and optimized build tooling. Implemented smooth user interactions with responsive design patterns and clean UI components. Leveraged Vite's HMR for exceptional development experience. Deployed with optimized performance metrics on Vercel.",
       tags: ["React", "Vite", "JavaScript", "ESLint", "Vercel"],
-      image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800",
+      image: "/screenshots/digital-delights.png",
       impact: "Live Production · Interactive Experience",
       github: "https://github.com/Chrisleo-16/digital-delights",
       demo: "https://digital-delights-delta.vercel.app/",
@@ -85,6 +85,7 @@ const Projects = () => {
     <section id="projects" className="py-20 bg-gradient-to-b from-background to-muted/20" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.div
+          data-aos="fade-up"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
