@@ -1,73 +1,60 @@
-# Welcome to your Lovable project
+Chris Leo — Fullstack Frontend Developer (Junior / Rising Talent)
 
-## Project info
+“Building clean, scalable, and visually compelling interfaces with modern web technologies. Always learning, shipping, and iterating.”
 
-**URL**: https://lovable.dev/projects/7d31fb8f-eded-4c78-82d4-32dc3f316e94
+About Me
 
-## How can I edit this code?
+I’m Chris Leo, a passionate frontend engineer with hands-on experience building modern, responsive web applications. My focus is on React, TypeScript, and Tailwind CSS, creating interfaces that are both elegant and maintainable. With less than a year of professional experience, I’ve already shipped multiple projects from concept to deployment, leveraging Vite, shadcn-ui, and modern development workflows to optimize speed and code quality.
 
-There are several ways of editing your application.
+I thrive on problem-solving, modular architecture, and rapid iteration, and I’m always exploring ways to bridge design and code. My goal is to contribute to impactful products while continuing to expand my technical breadth, from frontend logic to API integration and real-world feature development.
 
-**Use Lovable**
+Project Overview
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7d31fb8f-eded-4c78-82d4-32dc3f316e94) and start prompting.
+This repository hosts my interactive portfolio project, showcasing my ability to:
 
-Changes made via Lovable will be committed automatically to this repo.
+Build modular, reusable components with React and TypeScript
 
-**Use your preferred IDE**
+Implement responsive designs using Tailwind CSS and shadcn-ui
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Deploy projects quickly with Lovable or Vercel, with instant previews
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Integrate functional features such as dynamic project grids, API-driven content, and dark/light mode toggling
 
-Follow these steps:
+This project is a living demonstration of my skills, continuously iterated using AI-powered Lovable workflows.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Live Demo: Lovable Project
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Technologies Used
 
-# Step 3: Install the necessary dependencies.
-npm i
+Frontend: React, TypeScript, Tailwind CSS, shadcn-ui, Animate.css
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Build Tools & Bundlers: Vite, npm, Node.js
 
-**Edit a file directly in GitHub**
+Deployment: Lovable instant publishing or Vercel
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Other Skills: API consumption, state management, modular component architecture, responsive & accessible design
 
-**Use GitHub Codespaces**
+Projects & Highlights
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Portfolio & Interactive Projects
+Deployed live, showcasing functional, modular React apps with dynamic project grids, dark/light mode, and responsive layouts. Demonstrates end-to-end development from design to production.
 
-## What technologies are used for this project?
+Lovable-driven Rapid Iteration
+Leveraging AI-powered editing and instant deployment to continuously refine and ship frontend applications.
 
-This project is built with:
+Learning & Growth Projects
+Demonstrates hands-on experience with React hooks, state management, modular CSS architecture, and problem-solving in real-world scenarios.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+How I Work
 
-## How can I deploy this project?
+I combine structured code practices with rapid prototyping, ensuring that every project I ship is maintainable, reusable, and visually engaging. I document my work meticulously and follow best practices in modular architecture, code readability, and clean component design.
 
-Simply open [Lovable](https://lovable.dev/projects/7d31fb8f-eded-4c78-82d4-32dc3f316e94) and click on Share -> Publish.
+Whether working solo or in a team, I focus on problem-solving, clean UI, and functional excellence — bridging the gap between design and implementation.
 
-## Can I connect a custom domain to my Lovable project?
+Contact
 
-Yes, you can!
+GitHub: Chrisleo-16
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Portfolio: Live Projects
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Email: (Insert your professional email here)
