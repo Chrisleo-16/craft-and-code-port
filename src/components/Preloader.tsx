@@ -54,7 +54,7 @@ const Preloader = () => {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-background via-background to-secondary/20"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-background via-background to-secondary"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
