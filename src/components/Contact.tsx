@@ -6,11 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser"; // ✅ Added EmailJS
 
 const Contact = () => {
   const ref = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null); // ✅ Reference for EmailJS
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,14 +20,39 @@ const Contact = () => {
   });
 
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    setFormData({ name: "", email: "", message: "" });
+    setLoading(true);
+
+    if (!formRef.current) return;
+
+    // ✅ Send email via EmailJS
+    emailjs
+      .sendForm(
+        "service_xggajb9", // 🔹 Replace with your EmailJS service ID
+        "template_rmznr52", // 🔹 Replace with your EmailJS template ID
+        formRef.current,
+        "1caYsGKrf6rKQG-1K" // 🔹 Replace with your EmailJS public key
+      )
+      .then(
+        () => {
+          toast({
+            title: "Message sent!",
+            description: "Thank you for reaching out. I'll get back to you soon.",
+          });
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          toast({
+            title: "Failed to send message 😕",
+            description: "Please try again or contact me directly by email.",
+          });
+          console.error("EmailJS Error:", error);
+        }
+      )
+      .finally(() => setLoading(false));
   };
 
   const contactInfo = [
@@ -36,16 +63,15 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/20 overflow-hidden" ref={ref}>
-      <div className="container mx-auto px-4 max-w-full">
+    <section id="contact" className="py-20 bg-gradient-to-b from-background to-muted/20" ref={ref}>
+      <div className="container mx-auto px-4">
         <motion.div
-          data-aos="fade-up"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 px-4">Let's Build Something Exceptional</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Let's Build Something Exceptional</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Open to full-time opportunities, consulting projects, and technical advisory roles. 
@@ -53,7 +79,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -97,15 +123,17 @@ const Contact = () => {
             </div>
           </motion.div>
 
+          {/* ✅ EmailJS-enabled form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-card rounded-2xl p-8 shadow-lg">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 bg-card rounded-2xl p-8 shadow-lg">
               <div className="relative">
                 <Input
                   type="text"
+                  name="user_name" // ✅ EmailJS variable
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   onFocus={() => setFocusedField("name")}
@@ -128,6 +156,7 @@ const Contact = () => {
               <div className="relative">
                 <Input
                   type="email"
+                  name="user_email" // ✅ EmailJS variable
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   onFocus={() => setFocusedField("email")}
@@ -149,6 +178,7 @@ const Contact = () => {
 
               <div className="relative">
                 <Textarea
+                  name="message" // ✅ EmailJS variable
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   onFocus={() => setFocusedField("message")}
@@ -171,9 +201,10 @@ const Contact = () => {
 
               <Button
                 type="submit"
+                disabled={loading}
                 className="w-full h-12 bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 group"
               >
-                Send Message
+                {loading ? "Sending..." : "Send Message"}
                 <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </form>
