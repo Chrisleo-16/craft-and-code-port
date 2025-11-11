@@ -50,10 +50,10 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative py-20 bg-gradient-to-b from-background to-muted/10 overflow-hidden"
+      className="relative py-12 md:py-20 bg-gradient-to-b from-background to-muted/10 overflow-hidden"
       ref={ref}
     >
-      <div className="container mx-auto px-4 text-center">
+      <div className="container mx-auto px-4 text-center max-w-full">
         {/* Header Animation */}
         <motion.div
           data-aos="fade-up"
@@ -61,7 +61,7 @@ const Skills = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Full Stack Expertise</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Full Stack Expertise</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-8" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12">
             Technologies and tools I use to craft scalable, performant, and intelligent digital products.

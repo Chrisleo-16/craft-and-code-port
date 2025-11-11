@@ -14,7 +14,7 @@ const Index = () => {
   return (
     <>
       <Preloader />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background overflow-x-hidden max-w-full">
         <Navbar />
         <Hero />
         <About />

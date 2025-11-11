@@ -82,8 +82,8 @@ const Projects = () => {
   const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-background to-muted/20" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="projects" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/20 overflow-hidden" ref={ref}>
+      <div className="container mx-auto px-4 max-w-full">
         <motion.div
           data-aos="fade-up"
           initial={{ opacity: 0, y: 50 }}
@@ -91,7 +91,7 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Real-world solutions that make a difference
@@ -106,7 +106,7 @@ const Projects = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.5 }}
-            className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8"
+            className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
           >
             {currentProjects.map((project, index) => (
               <motion.div

@@ -4,8 +4,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-card border-t border-border py-12">
-      <div className="container mx-auto px-4">
+    <footer className="bg-card border-t border-border py-12 overflow-hidden">
+      <div className="container mx-auto px-4 max-w-full">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
             <img src="/logos/chrisbenleo-high-resolution-logo-transparent.png" alt="" className="w-20 h-12 md:w-20 md:h-14 object-contain " />

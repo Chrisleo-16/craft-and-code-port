@@ -36,8 +36,8 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-background to-muted/20" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/20 overflow-hidden" ref={ref}>
+      <div className="container mx-auto px-4 max-w-full">
         <motion.div
           data-aos="fade-up"
           initial={{ opacity: 0, y: 50 }}
@@ -45,7 +45,7 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Let's Build Something Exceptional</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 px-4">Let's Build Something Exceptional</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Open to full-time opportunities, consulting projects, and technical advisory roles. 
@@ -53,7 +53,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}

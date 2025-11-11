@@ -26,8 +26,8 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-background to-muted/20" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/20 overflow-hidden" ref={ref}>
+      <div className="container mx-auto px-4 max-w-full">
         <motion.div
           data-aos="fade-up"
           initial={{ opacity: 0, y: 50 }}
@@ -35,7 +35,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">About Me</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto" />
         </motion.div>
 

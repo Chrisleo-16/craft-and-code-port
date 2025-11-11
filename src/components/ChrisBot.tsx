@@ -29,23 +29,19 @@ const ChrisBot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Show greeting on mount
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!hasShownGreeting) {
-        setIsOpen(true);
-        setMessages([
-          {
-            role: "assistant",
-            content: "Eish! Chris ameni-program vibaya bana — sasa niko hapa kupiga story.\nUnataka tuende na lugha gani? Sheng? Swahili? Ama English ya ku-make investor smile? 😏",
-          },
-        ]);
-        setHasShownGreeting(true);
-      }
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [hasShownGreeting]);
+  // Show greeting only when user opens chat
+  const handleOpen = () => {
+    setIsOpen(true);
+    if (!hasShownGreeting) {
+      setMessages([
+        {
+          role: "assistant",
+          content: "Eish! Chris ameni-program vibaya bana — sasa niko hapa kupiga story.\nUnataka tuende na lugha gani? Sheng? Swahili? Ama English ya ku-make investor smile? 😏",
+        },
+      ]);
+      setHasShownGreeting(true);
+    }
+  };
 
   const sendMessage = async (messageText?: string) => {
     const textToSend = messageText || input.trim();
@@ -121,13 +117,13 @@ const ChrisBot = () => {
                 ease: "easeInOut"
               }
             }}
-            className="fixed bottom-0 right-12 z-50 cursor-pointer"
-            onClick={() => setIsOpen(true)}
+            className="fixed bottom-0 right-4 md:right-12 z-50 cursor-pointer"
+            onClick={handleOpen}
           >
             <motion.img
               src={chrisbotCharacter}
               alt="ChrisBot Character"
-              className="h-48 w-auto drop-shadow-2xl"
+              className="h-32 md:h-48 w-auto drop-shadow-2xl"
               animate={{
                 y: [0, -10, 0],
               }}
@@ -141,10 +137,10 @@ const ChrisBot = () => {
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="absolute -top-16 left-1/2 -translate-x-1/2 bg-white dark:bg-gray-800 rounded-2xl px-4 py-2 shadow-xl border-2 border-primary"
+              className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm rounded-2xl px-3 md:px-4 py-2 shadow-xl border-2 border-primary"
             >
-              <p className="text-sm font-medium whitespace-nowrap">Niaje! Tap me 😏</p>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-800 border-r-2 border-b-2 border-primary rotate-45" />
+              <p className="text-xs md:text-sm font-medium whitespace-nowrap">Niaje! Tap me 😏</p>
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-card border-r-2 border-b-2 border-primary rotate-45" />
             </motion.div>
           </motion.div>
         )}
@@ -163,9 +159,9 @@ const ChrisBot = () => {
             }}
             exit={{ scale: 0, opacity: 0, x: 100, y: 100 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="fixed bottom-6 right-12 z-50 w-96 max-w-[calc(100vw-3rem)]"
+            className="fixed bottom-4 right-4 md:bottom-6 md:right-12 z-50 w-[calc(100vw-2rem)] sm:w-96 max-w-[calc(100vw-2rem)]"
           >
-            <div className="bg-background border-2 border-primary rounded-2xl shadow-2xl overflow-hidden">
+            <div className="bg-card/95 backdrop-blur-md border-2 border-primary rounded-2xl shadow-2xl overflow-hidden">
               {/* Header with Character */}
               <div className="bg-gradient-to-r from-primary to-accent p-4 flex items-center justify-between relative">
                 <div className="flex items-center gap-3">
@@ -190,7 +186,7 @@ const ChrisBot = () => {
               </div>
 
               {/* Messages */}
-              <div className="h-96 overflow-y-auto p-4 space-y-4 bg-muted/30">
+              <div className="h-80 md:h-96 overflow-y-auto p-3 md:p-4 space-y-4 bg-transparent">
                 {messages.map((msg, idx) => (
                   <motion.div
                     key={idx}
@@ -229,7 +225,7 @@ const ChrisBot = () => {
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="px-4 py-3 border-t border-border bg-background/50"
+                  className="px-3 md:px-4 py-3 border-t border-border bg-transparent"
                 >
                   <p className="text-xs text-muted-foreground mb-2">Vipi? Pick one:</p>
                   <div className="flex flex-wrap gap-2">
@@ -270,7 +266,7 @@ const ChrisBot = () => {
               )}
 
               {/* Input with Voice */}
-              <div className="p-4 border-t border-border bg-background">
+              <div className="p-3 md:p-4 border-t border-border bg-transparent">
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
