@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send, Loader2 } from "lucide-react";
+import { X, Send, Loader2, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import chrisbotDesk from "@/assets/chrisbot-desk.png";
 
 interface Message {
   role: "user" | "assistant";
@@ -19,26 +18,8 @@ const ChrisBot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasShownGreeting, setHasShownGreeting] = useState(false);
   const [showBot, setShowBot] = useState(false);
-  const [typedText, setTypedText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
-
-  // Typing animation for speech bubble
-  useEffect(() => {
-    if (!isOpen) {
-      const text = "Hi there 😎";
-      let index = 0;
-      const typingInterval = setInterval(() => {
-        if (index <= text.length) {
-          setTypedText(text.slice(0, index));
-          index++;
-        } else {
-          clearInterval(typingInterval);
-        }
-      }, 100);
-      return () => clearInterval(typingInterval);
-    }
-  }, [isOpen]);
 
   // Listen for preloader completion
   useEffect(() => {
@@ -140,115 +121,21 @@ const ChrisBot = () => {
 
   return (
     <>
-      {/* Character Button (cartoon assistant style) */}
-<AnimatePresence>
-  {!isOpen && (
-    <motion.div
-      initial={{ x: 100, y: 100, opacity: 0 }}
-      animate={{ x: 0, y: 0, opacity: 1 }}
-      exit={{ x: 100, y: 100, opacity: 0 }}
-      transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className="fixed bottom-0 right-4 md:right-12 z-50 cursor-pointer select-none"
-      onClick={handleOpen}
-    >
-      <motion.div
-        animate={{
-          y: [0, -8, 0],
-          rotate: [0, 1.5, -1.5, 0],
-          scale: [1, 1.02, 1],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 3,
-          ease: "easeInOut",
-        }}
-        className="relative"
-      >
-        <motion.img
-          src={chrisbotDesk}
-          alt="ChrisBot Character"
-          className="h-32 md:h-48 w-auto drop-shadow-[0_10px_25px_rgba(0,0,0,0.3)]"
-        />
-
-        {/* Glowing aura */}
-        <motion.div
-          className="absolute inset-0 rounded-full blur-xl"
-          animate={{
-            boxShadow: [
-              "0 0 0px rgba(255,255,255,0)",
-              "0 0 25px rgba(255,200,100,0.4)",
-              "0 0 0px rgba(255,255,255,0)",
-            ],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 3,
-            ease: "easeInOut",
-          }}
-        />
-
-        {/* Floating sparkles */}
-        <motion.span
-          className="absolute -top-6 left-1/2 -translate-x-1/2 text-yellow-300 text-lg"
-          animate={{
-            y: [0, -12, 0],
-            opacity: [0.6, 1, 0.6],
-            rotate: [0, 15, -15, 0],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 3,
-            ease: "easeInOut",
-            delay: 0.5,
-          }}
-        >
-          ✨
-        </motion.span>
-
-        <motion.span
-          className="absolute -right-4 bottom-8 text-blue-400 text-xl"
-          animate={{
-            y: [0, -6, 0],
-            opacity: [0.9, 1, 0.9],
-            rotate: [0, -10, 10, 0],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 4,
-            ease: "easeInOut",
-          }}
-        >
-          💬
-        </motion.span>
-
-        {/* ❌ REMOVED EYE BLINKS — no blinking at all */}
-      </motion.div>
-
-      {/* Speech bubble with typing effect */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{
-          duration: 0.3,
-          ease: "easeInOut",
-        }}
-        className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm rounded-2xl px-3 md:px-4 py-2 shadow-xl border-2 border-primary"
-      >
-        <p className="text-xs md:text-sm font-medium whitespace-nowrap">
-          {typedText}
-          <motion.span
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ duration: 0.8, repeat: Infinity }}
-            className="inline-block ml-0.5"
+      {/* Simple Bot Button */}
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            onClick={handleOpen}
+            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary hover:bg-primary/90 shadow-lg flex items-center justify-center transition-colors"
           >
-            |
-          </motion.span>
-        </p>
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-card border-r-2 border-b-2 border-primary rotate-45" />
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+            <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-primary-foreground" />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
 
       {/* Chat Window */}
@@ -264,11 +151,9 @@ const ChrisBot = () => {
             <div className="bg-card/95 backdrop-blur-md border-2 border-primary rounded-2xl shadow-2xl overflow-hidden">
               <div className="bg-gradient-to-r from-primary to-accent p-4 flex items-center justify-between relative">
                 <div className="flex items-center gap-3">
-                  <img
-                    src={chrisbotDesk}
-                    alt="ChrisBot"
-                    className="h-12 w-12 rounded-full object-cover border-2 border-white"
-                  />
+                  <div className="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center">
+                    <MessageCircle className="w-6 h-6 text-white" />
+                  </div>
                   <div>
                     <h3 className="font-bold text-white">ChrisBot</h3>
                     <p className="text-xs text-white/80">
