@@ -5,8 +5,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import Lottie from "lottie-react";
-import chrisbotAnimation from "@/assets/chatbot-animation.json";
+import chrisbotDesk from "@/assets/chrisbot-desk.png";
 
 interface Message {
   role: "user" | "assistant";
@@ -20,14 +19,32 @@ const ChrisBot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasShownGreeting, setHasShownGreeting] = useState(false);
   const [showBot, setShowBot] = useState(false);
+  const [typedText, setTypedText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // Typing animation for speech bubble
+  useEffect(() => {
+    if (!isOpen) {
+      const text = "Hi there 😎";
+      let index = 0;
+      const typingInterval = setInterval(() => {
+        if (index <= text.length) {
+          setTypedText(text.slice(0, index));
+          index++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 100);
+      return () => clearInterval(typingInterval);
+    }
+  }, [isOpen]);
 
   // Listen for preloader completion
   useEffect(() => {
     const checkPreloader = () => {
-      const isComplete = localStorage.getItem('preloader-complete');
-      if (isComplete === 'true') {
+      const isComplete = localStorage.getItem("preloader-complete");
+      if (isComplete === "true") {
         setShowBot(true);
       }
     };
@@ -38,8 +55,9 @@ const ChrisBot = () => {
       setShowBot(true);
     };
 
-    window.addEventListener('preloader-complete', handlePreloaderComplete);
-    return () => window.removeEventListener('preloader-complete', handlePreloaderComplete);
+    window.addEventListener("preloader-complete", handlePreloaderComplete);
+    return () =>
+      window.removeEventListener("preloader-complete", handlePreloaderComplete);
   }, []);
 
   const scrollToBottom = () => {
@@ -146,20 +164,11 @@ const ChrisBot = () => {
         }}
         className="relative"
       >
-        <motion.div
-          className="h-32 md:h-48 w-32 md:w-48 drop-shadow-[0_10px_25px_rgba(0,0,0,0.3)]"
-          whileHover={{
-            scale: 1.05,
-            transition: { duration: 0.6 },
-          }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <Lottie
-            animationData={chrisbotAnimation}
-            loop={true}
-            className="w-full h-full"
-          />
-        </motion.div>
+        <motion.img
+          src={chrisbotDesk}
+          alt="ChrisBot Character"
+          className="h-32 md:h-48 w-auto drop-shadow-[0_10px_25px_rgba(0,0,0,0.3)]"
+        />
 
         {/* Glowing aura */}
         <motion.div
@@ -215,19 +224,25 @@ const ChrisBot = () => {
         {/* ❌ REMOVED EYE BLINKS — no blinking at all */}
       </motion.div>
 
-      {/* Speech bubble */}
+      {/* Speech bubble with typing effect */}
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: [1, 1.05, 1], opacity: 1 }}
+        animate={{ scale: 1, opacity: 1 }}
         transition={{
-          repeat: Infinity,
-          duration: 2,
+          duration: 0.3,
           ease: "easeInOut",
         }}
         className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm rounded-2xl px-3 md:px-4 py-2 shadow-xl border-2 border-primary"
       >
         <p className="text-xs md:text-sm font-medium whitespace-nowrap">
-          Hi there 😎
+          {typedText}
+          <motion.span
+            animate={{ opacity: [1, 0, 1] }}
+            transition={{ duration: 0.8, repeat: Infinity }}
+            className="inline-block ml-0.5"
+          >
+            |
+          </motion.span>
         </p>
         <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-card border-r-2 border-b-2 border-primary rotate-45" />
       </motion.div>
@@ -249,24 +264,11 @@ const ChrisBot = () => {
             <div className="bg-card/95 backdrop-blur-md border-2 border-primary rounded-2xl shadow-2xl overflow-hidden">
               <div className="bg-gradient-to-r from-primary to-accent p-4 flex items-center justify-between relative">
                 <div className="flex items-center gap-3">
-                  <motion.div
-                    className="h-12 w-12 rounded-full border-2 border-white overflow-hidden bg-primary/10"
-                    animate={{
-                      rotate: [0, 1, -1, 0],
-                      y: [0, -2, 0],
-                    }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 2.5,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <Lottie
-                      animationData={chrisbotAnimation}
-                      loop={true}
-                      className="w-full h-full"
-                    />
-                  </motion.div>
+                  <img
+                    src={chrisbotDesk}
+                    alt="ChrisBot"
+                    className="h-12 w-12 rounded-full object-cover border-2 border-white"
+                  />
                   <div>
                     <h3 className="font-bold text-white">ChrisBot</h3>
                     <p className="text-xs text-white/80">
