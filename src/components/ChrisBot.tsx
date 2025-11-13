@@ -29,14 +29,14 @@ const ChrisBot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Show greeting only when user opens chat
   const handleOpen = () => {
     setIsOpen(true);
     if (!hasShownGreeting) {
       setMessages([
         {
           role: "assistant",
-          content: "Eish! Chris ameni-program vibaya bana — sasa niko hapa kupiga story.\nUnataka tuende na lugha gani? Sheng? Swahili? Ama English ya ku-make investor smile? 😏",
+          content:
+            "Eish! Chris ameni-program vibaya bana — sasa niko hapa kupiga story.\nUnataka tuende na lugha gani? Sheng? Swahili? Ama English ya ku-make investor smile? 😏",
         },
       ]);
       setHasShownGreeting(true);
@@ -60,7 +60,10 @@ const ChrisBot = () => {
       if (error) throw error;
 
       if (data?.reply) {
-        setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", content: data.reply },
+        ]);
       }
     } catch (error) {
       console.error("ChrisBot error:", error);
@@ -95,84 +98,149 @@ const ChrisBot = () => {
 
   return (
     <>
-      {/* Character Button */}
-      <AnimatePresence>
-        {!isOpen && (
-          <motion.div
-            initial={{ x: 100, y: 100, opacity: 0 }}
-            animate={{ 
-              x: 0, 
-              y: 0, 
-              opacity: 1,
-              rotate: [0, -2, 2, -2, 0],
-            }}
-            exit={{ x: 100, y: 100, opacity: 0 }}
-            transition={{
-              type: "spring",
-              stiffness: 260,
-              damping: 20,
-              rotate: {
-                repeat: Infinity,
-                duration: 3,
-                ease: "easeInOut"
-              }
-            }}
-            className="fixed bottom-0 right-4 md:right-12 z-50 cursor-pointer"
-            onClick={handleOpen}
-          >
-            <motion.img
-              src={chrisbotCharacter}
-              alt="ChrisBot Character"
-              className="h-32 md:h-48 w-auto drop-shadow-2xl"
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 2,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm rounded-2xl px-3 md:px-4 py-2 shadow-xl border-2 border-primary"
-            >
-              <p className="text-xs md:text-sm font-medium whitespace-nowrap">Niaje! Tap me 😏</p>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-card border-r-2 border-b-2 border-primary rotate-45" />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Character Button (cartoon assistant style) */}
+<AnimatePresence>
+  {!isOpen && (
+    <motion.div
+      initial={{ x: 100, y: 100, opacity: 0 }}
+      animate={{ x: 0, y: 0, opacity: 1 }}
+      exit={{ x: 100, y: 100, opacity: 0 }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      className="fixed bottom-0 right-4 md:right-12 z-50 cursor-pointer select-none"
+      onClick={handleOpen}
+    >
+      <motion.div
+        animate={{
+          y: [0, -8, 0],
+          rotate: [0, 1.5, -1.5, 0],
+          scale: [1, 1.02, 1],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 3,
+          ease: "easeInOut",
+        }}
+        className="relative"
+      >
+        <motion.img
+          src={chrisbotCharacter}
+          alt="ChrisBot Character"
+          className="h-32 md:h-48 w-auto drop-shadow-[0_10px_25px_rgba(0,0,0,0.3)] rounded-full"
+          whileHover={{
+            rotate: [0, -10, 10, -5, 5, 0],
+            scale: 1.05,
+            transition: { duration: 0.6 },
+          }}
+          whileTap={{ scale: 0.9 }}
+        />
+
+        {/* Glowing aura */}
+        <motion.div
+          className="absolute inset-0 rounded-full blur-xl"
+          animate={{
+            boxShadow: [
+              "0 0 0px rgba(255,255,255,0)",
+              "0 0 25px rgba(255,200,100,0.4)",
+              "0 0 0px rgba(255,255,255,0)",
+            ],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 3,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Floating sparkles */}
+        <motion.span
+          className="absolute -top-6 left-1/2 -translate-x-1/2 text-yellow-300 text-lg"
+          animate={{
+            y: [0, -12, 0],
+            opacity: [0.6, 1, 0.6],
+            rotate: [0, 15, -15, 0],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 3,
+            ease: "easeInOut",
+            delay: 0.5,
+          }}
+        >
+          ✨
+        </motion.span>
+
+        <motion.span
+          className="absolute -right-4 bottom-8 text-blue-400 text-xl"
+          animate={{
+            y: [0, -6, 0],
+            opacity: [0.9, 1, 0.9],
+            rotate: [0, -10, 10, 0],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 4,
+            ease: "easeInOut",
+          }}
+        >
+          💬
+        </motion.span>
+
+        {/* ❌ REMOVED EYE BLINKS — no blinking at all */}
+      </motion.div>
+
+      {/* Speech bubble */}
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: [1, 1.05, 1], opacity: 1 }}
+        transition={{
+          repeat: Infinity,
+          duration: 2,
+          ease: "easeInOut",
+        }}
+        className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm rounded-2xl px-3 md:px-4 py-2 shadow-xl border-2 border-primary"
+      >
+        <p className="text-xs md:text-sm font-medium whitespace-nowrap">
+          Hi there 😎
+        </p>
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-card border-r-2 border-b-2 border-primary rotate-45" />
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
 
       {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ scale: 0, opacity: 0, x: 100, y: 100 }}
-            animate={{ 
-              scale: 1, 
-              opacity: 1, 
-              x: 0, 
-              y: 0,
-            }}
+            animate={{ scale: 1, opacity: 1, x: 0, y: 0 }}
             exit={{ scale: 0, opacity: 0, x: 100, y: 100 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             className="fixed bottom-4 right-4 md:bottom-6 md:right-12 z-50 w-[calc(100vw-2rem)] sm:w-96 max-w-[calc(100vw-2rem)]"
           >
             <div className="bg-card/95 backdrop-blur-md border-2 border-primary rounded-2xl shadow-2xl overflow-hidden">
-              {/* Header with Character */}
               <div className="bg-gradient-to-r from-primary to-accent p-4 flex items-center justify-between relative">
                 <div className="flex items-center gap-3">
                   <motion.img
                     src={chrisbotCharacter}
                     alt="ChrisBot"
                     className="h-12 w-12 rounded-full object-cover border-2 border-white"
+                    animate={{
+                      rotate: [0, 1, -1, 0],
+                      y: [0, -2, 0],
+                    }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 2.5,
+                      ease: "easeInOut",
+                    }}
                   />
                   <div>
                     <h3 className="font-bold text-white">ChrisBot</h3>
-                    <p className="text-xs text-white/80">Your sarcastic mate 😏</p>
+                    <p className="text-xs text-white/80">
+                      Your sarcastic mate 😏
+                    </p>
                   </div>
                 </div>
                 <Button
@@ -192,8 +260,14 @@ const ChrisBot = () => {
                     key={idx}
                     initial={{ scale: 0.8, opacity: 0, y: 10 }}
                     animate={{ scale: 1, opacity: 1, y: 0 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                    className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 30,
+                    }}
+                    className={`flex ${
+                      msg.role === "user" ? "justify-end" : "justify-start"
+                    }`}
                   >
                     <div
                       className={`max-w-[80%] rounded-2xl px-4 py-3 shadow-md ${
@@ -222,12 +296,14 @@ const ChrisBot = () => {
 
               {/* Quick Actions */}
               {messages.length <= 1 && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="px-3 md:px-4 py-3 border-t border-border bg-transparent"
                 >
-                  <p className="text-xs text-muted-foreground mb-2">Vipi? Pick one:</p>
+                  <p className="text-xs text-muted-foreground mb-2">
+                    Vipi? Pick one:
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     <Button
                       variant="outline"
@@ -265,7 +341,7 @@ const ChrisBot = () => {
                 </motion.div>
               )}
 
-              {/* Input with Voice */}
+              {/* Input */}
               <div className="p-3 md:p-4 border-t border-border bg-transparent">
                 <form
                   onSubmit={(e) => {
@@ -281,7 +357,11 @@ const ChrisBot = () => {
                     disabled={isLoading}
                     className="flex-1"
                   />
-                  <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
+                  <Button
+                    type="submit"
+                    size="icon"
+                    disabled={isLoading || !input.trim()}
+                  >
                     <Send className="h-4 w-4" />
                   </Button>
                 </form>

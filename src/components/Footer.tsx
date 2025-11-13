@@ -34,7 +34,9 @@ const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-border text-center text-muted-foreground">
           <p className="flex items-center justify-center gap-2">
-            © {currentYear} Portfolio. Made with <Heart className="w-4 h-4 text-accent fill-accent" /> by a passionate developer.
+            Copyright © {currentYear}|
+            <a href="https://github.com/Chrisleo-16/" target="_blank" rel="noopener noreferrer" className="text-decoration-none">Leo Chrisben Evans
+</a>
           </p>
         </div>
       </div>
