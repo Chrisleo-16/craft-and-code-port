@@ -11,7 +11,12 @@ const Preloader = () => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => setIsLoading(false), 800);
+          setTimeout(() => {
+            setIsLoading(false);
+            // Signal that preloader is done
+            localStorage.setItem('preloader-complete', 'true');
+            window.dispatchEvent(new Event('preloader-complete'));
+          }, 800);
           return 100;
         }
         return prev + (100 / 100); // 100 steps → 10s total (100ms × 100)

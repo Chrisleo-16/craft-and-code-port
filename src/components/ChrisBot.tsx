@@ -5,7 +5,8 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import chrisbotCharacter from "@/assets/chrisbot-character.png";
+import Lottie from "lottie-react";
+import chrisbotAnimation from "@/assets/chatbot-animation.json";
 
 interface Message {
   role: "user" | "assistant";
@@ -18,8 +19,28 @@ const ChrisBot = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hasShownGreeting, setHasShownGreeting] = useState(false);
+  const [showBot, setShowBot] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // Listen for preloader completion
+  useEffect(() => {
+    const checkPreloader = () => {
+      const isComplete = localStorage.getItem('preloader-complete');
+      if (isComplete === 'true') {
+        setShowBot(true);
+      }
+    };
+
+    checkPreloader();
+
+    const handlePreloaderComplete = () => {
+      setShowBot(true);
+    };
+
+    window.addEventListener('preloader-complete', handlePreloaderComplete);
+    return () => window.removeEventListener('preloader-complete', handlePreloaderComplete);
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -96,6 +117,9 @@ const ChrisBot = () => {
     sendMessage(message);
   };
 
+  // Don't render until preloader is done
+  if (!showBot) return null;
+
   return (
     <>
       {/* Character Button (cartoon assistant style) */}
@@ -122,17 +146,20 @@ const ChrisBot = () => {
         }}
         className="relative"
       >
-        <motion.img
-          src={chrisbotCharacter}
-          alt="ChrisBot Character"
-          className="h-32 md:h-48 w-auto drop-shadow-[0_10px_25px_rgba(0,0,0,0.3)] rounded-full"
+        <motion.div
+          className="h-32 md:h-48 w-32 md:w-48 drop-shadow-[0_10px_25px_rgba(0,0,0,0.3)]"
           whileHover={{
-            rotate: [0, -10, 10, -5, 5, 0],
             scale: 1.05,
             transition: { duration: 0.6 },
           }}
           whileTap={{ scale: 0.9 }}
-        />
+        >
+          <Lottie
+            animationData={chrisbotAnimation}
+            loop={true}
+            className="w-full h-full"
+          />
+        </motion.div>
 
         {/* Glowing aura */}
         <motion.div
@@ -222,10 +249,8 @@ const ChrisBot = () => {
             <div className="bg-card/95 backdrop-blur-md border-2 border-primary rounded-2xl shadow-2xl overflow-hidden">
               <div className="bg-gradient-to-r from-primary to-accent p-4 flex items-center justify-between relative">
                 <div className="flex items-center gap-3">
-                  <motion.img
-                    src={chrisbotCharacter}
-                    alt="ChrisBot"
-                    className="h-12 w-12 rounded-full object-cover border-2 border-white"
+                  <motion.div
+                    className="h-12 w-12 rounded-full border-2 border-white overflow-hidden bg-primary/10"
                     animate={{
                       rotate: [0, 1, -1, 0],
                       y: [0, -2, 0],
@@ -235,7 +260,13 @@ const ChrisBot = () => {
                       duration: 2.5,
                       ease: "easeInOut",
                     }}
-                  />
+                  >
+                    <Lottie
+                      animationData={chrisbotAnimation}
+                      loop={true}
+                      className="w-full h-full"
+                    />
+                  </motion.div>
                   <div>
                     <h3 className="font-bold text-white">ChrisBot</h3>
                     <p className="text-xs text-white/80">
